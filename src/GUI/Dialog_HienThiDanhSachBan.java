@@ -1,0 +1,439 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package GUI;
+
+import DTO.BAN_DTO;
+import java.awt.Button;
+import java.awt.Color;
+import java.awt.Point;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import BLL.*;
+import java.util.ArrayList;
+import javax.print.attribute.standard.JobName;
+import javax.swing.JOptionPane;
+
+/**
+ *
+ * @author DELL
+ */
+public class Dialog_HienThiDanhSachBan extends javax.swing.JDialog {
+
+    /**
+     * Creates new form ShowThongTinBan
+     */
+    BAN_BLL ban_BLL = new BAN_BLL();
+    HOADON_BLL hoadon_BLL = new HOADON_BLL();
+
+    String _maHoaDon, _maBan, _tenBan;
+    ArrayList<BAN_DTO> lstBan_BLL = new ArrayList<BAN_DTO>();
+
+    public Dialog_HienThiDanhSachBan(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
+        initComponents();
+        lstBan_BLL = ban_BLL.showThongTinBan();
+        LoadTrangThaiBan();
+    }
+
+    public void LoadTrangThaiBan() {
+        for (BAN_DTO items : lstBan_BLL) {
+            switch (items.getMABAN()) {
+
+                case "B001":
+                    String trangthaitemp = items.getTRANGTHAI();
+                    if (items.getTRANGTHAI().equals("trong")) {
+                        setTrangThaiTrong(btn_Ban01);
+                    } else if (items.getTRANGTHAI().equals("datcho")) {
+                        setTrangThaiDaDat(btn_Ban01);
+                    } else {
+                        setTrangThaiCoKhach(btn_Ban01);
+                    }
+                    break;
+                case "B002":
+                    trangthaitemp = items.getTRANGTHAI();
+                    if (items.getTRANGTHAI().equals("trong")) {
+                        setTrangThaiTrong(btn_Ban02);
+                    } else if (items.getTRANGTHAI().equals("datcho")) {
+                        setTrangThaiDaDat(btn_Ban02);
+                    } else {
+                        setTrangThaiCoKhach(btn_Ban02);
+                    }
+                    break;
+                case "B003":
+                    trangthaitemp = items.getTRANGTHAI();
+                    if (items.getTRANGTHAI().equals("trong")) {
+                        setTrangThaiTrong(btn_Ban03);
+                    } else if (items.getTRANGTHAI().equals("datcho")) {
+                        setTrangThaiDaDat(btn_Ban03);
+                    } else {
+                        setTrangThaiCoKhach(btn_Ban03);
+                    }
+                    break;
+                case "B004":
+                    trangthaitemp = items.getTRANGTHAI();
+                    if (items.getTRANGTHAI().equals("trong")) {
+                        setTrangThaiTrong(btn_Ban04);
+                    } else if (items.getTRANGTHAI().equals("datcho")) {
+                        setTrangThaiDaDat(btn_Ban04);
+                    } else {
+                        setTrangThaiCoKhach(btn_Ban04);
+                    }
+                    break;
+                case "B005":
+                    trangthaitemp = items.getTRANGTHAI();
+                    if (items.getTRANGTHAI().equals("trong")) {
+                        setTrangThaiTrong(btn_Ban05);
+                    } else if (items.getTRANGTHAI().equals("datcho")) {
+                        setTrangThaiDaDat(btn_Ban05);
+                    } else {
+                        setTrangThaiCoKhach(btn_Ban05);
+                    }
+                    break;
+            }
+        }
+    }
+
+    public void SetMaHoaDon(String MaHoaDon) {
+        _maHoaDon = MaHoaDon;
+    }
+
+    public void SetMaBan(String MaBan) {
+        _maBan = MaBan;
+    }
+
+    public void SetTenBan(String TenBan) {
+        _tenBan = TenBan;
+    }
+
+    public void setTrangThaiDaDat(JButton btn) {
+        btn.setBackground(Color.YELLOW);
+    }
+
+    public void setTrangThaiTrong(JButton btn) {
+        btn.setBackground(Color.GREEN);
+    }
+
+    public void setTrangThaiCoKhach(JButton btn) {
+        btn.setBackground(Color.RED);
+    }
+
+    public void loadDSban() {
+        int positionBegnX = 10, positionBegnY = 10;
+        JButton btn = TaoButton("Bàn Số 1", 70, 70);
+        JButton btn1 = TaoButton("Bàn Số 2", 70, 70);
+        this.Panel_HienThiBan.add(btn);
+        btn.setLocation(new Point(positionBegnX, positionBegnY));
+
+        this.Panel_HienThiBan.add(btn1);
+        btn.setLocation(new Point(positionBegnX + 30, positionBegnY));
+    }
+
+    public JButton TaoButton(String tenBan, int mingaX, int mingaY) {
+        JButton nuevo = new JButton("Bàn 01");
+        nuevo.setVisible(true);
+        nuevo.setSize(mingaX, mingaY);
+        return nuevo;
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jLabel1 = new javax.swing.JLabel();
+        Panel_HienThiBan = new javax.swing.JPanel();
+        btn_Ban02 = new javax.swing.JButton();
+        btn_Ban03 = new javax.swing.JButton();
+        btn_Ban01 = new javax.swing.JButton();
+        btn_Ban04 = new javax.swing.JButton();
+        btn_Ban05 = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jLabel1.setText("Chọn bàn cần chuyển đến");
+
+        btn_Ban02.setText("BAN 02");
+        btn_Ban02.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_Ban02ActionPerformed(evt);
+            }
+        });
+
+        btn_Ban03.setText("BAN 03");
+        btn_Ban03.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_Ban03ActionPerformed(evt);
+            }
+        });
+
+        btn_Ban01.setText("BAN 01");
+        btn_Ban01.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_Ban01ActionPerformed(evt);
+            }
+        });
+
+        btn_Ban04.setText("BÀN 04");
+        btn_Ban04.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_Ban04ActionPerformed(evt);
+            }
+        });
+
+        btn_Ban05.setText("BÀN 05");
+        btn_Ban05.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_Ban05ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout Panel_HienThiBanLayout = new javax.swing.GroupLayout(Panel_HienThiBan);
+        Panel_HienThiBan.setLayout(Panel_HienThiBanLayout);
+        Panel_HienThiBanLayout.setHorizontalGroup(
+            Panel_HienThiBanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Panel_HienThiBanLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(Panel_HienThiBanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Panel_HienThiBanLayout.createSequentialGroup()
+                        .addComponent(btn_Ban01, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_Ban04, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(Panel_HienThiBanLayout.createSequentialGroup()
+                        .addComponent(btn_Ban02, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_Ban05, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_Ban03, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(191, Short.MAX_VALUE))
+        );
+        Panel_HienThiBanLayout.setVerticalGroup(
+            Panel_HienThiBanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Panel_HienThiBanLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addGroup(Panel_HienThiBanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_Ban01, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_Ban04, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(Panel_HienThiBanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_Ban02, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_Ban05, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(8, 8, 8)
+                .addComponent(btn_Ban03, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(113, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(127, 127, 127)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(Panel_HienThiBan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(Panel_HienThiBan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void ShowThongBao(String ThongBao) {
+        JOptionPane.showConfirmDialog(null, ThongBao, "Thông báo hệ thống", JOptionPane.DEFAULT_OPTION);
+    }
+    private void btn_Ban01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Ban01ActionPerformed
+        // TODO add your handling code here:
+        String maban = "B001";
+        int kt = 0;
+        for (BAN_DTO items : lstBan_BLL) {
+            if (items.getMABAN().equalsIgnoreCase(maban) == true && items.getTRANGTHAI().equalsIgnoreCase("trong") == true) {
+                //chuyển được
+                int quess = JOptionPane.showConfirmDialog(null, "Chắc chắn chuyển bàn?", "Thông báo hệ thống", JOptionPane.YES_NO_OPTION);
+                if (quess == JOptionPane.YES_OPTION) {
+                    int kt_ChuyenBan = hoadon_BLL.ChuyenBan(maban, maban, _maHoaDon);
+                    kt++;
+                    if (kt_ChuyenBan == 1) {
+                        //cập nhật bàn trống
+                        Frm_QuanLyBan f = new Frm_QuanLyBan();
+                        f.UpdateTrangThaiVangKhach(_maBan); //bàn cũ
+                        f.UpdateTrangThaiCoKhach(maban); // có khách bàn mới
+                        ShowThongBao("Chuyển bàn bàn thành công");
+                    }
+                }
+            }
+        }
+        if (kt == 0) {
+            ShowThongBao("Không thể chuyển vào bàn này");
+        }
+    }//GEN-LAST:event_btn_Ban01ActionPerformed
+
+    private void btn_Ban02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Ban02ActionPerformed
+        String maban = "B002";
+        int kt = 0;
+        for (BAN_DTO items : lstBan_BLL) {
+            if (items.getMABAN().equalsIgnoreCase(maban) == true && items.getTRANGTHAI().equalsIgnoreCase("trong") == true) {
+                //chuyển được
+                int quess = JOptionPane.showConfirmDialog(null, "Chắc chắn chuyển bàn?", "Thông báo hệ thống", JOptionPane.YES_NO_OPTION);
+                if (quess == JOptionPane.YES_OPTION) {
+                    int kt_ChuyenBan = hoadon_BLL.ChuyenBan(maban, maban, _maHoaDon);
+                    kt++;
+                    if (kt_ChuyenBan == 1) {
+                        //cập nhật bàn trống
+                        Frm_QuanLyBan f = new Frm_QuanLyBan();
+                        f.UpdateTrangThaiVangKhach(_maBan); //bàn cũ
+                        f.UpdateTrangThaiCoKhach(maban); // có khách bàn mới
+                        ShowThongBao("Chuyển bàn bàn thành công");
+                    }
+                }
+            }
+        }
+        if (kt == 0) {
+            ShowThongBao("Không thể chuyển vào bàn này");
+        }
+    }//GEN-LAST:event_btn_Ban02ActionPerformed
+
+    private void btn_Ban03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Ban03ActionPerformed
+        String maban = "B003";
+        int kt = 0;
+        for (BAN_DTO items : lstBan_BLL) {
+            if (items.getMABAN().equalsIgnoreCase(maban) == true && items.getTRANGTHAI().equalsIgnoreCase("trong") == true) {
+                //chuyển được
+                int quess = JOptionPane.showConfirmDialog(null, "Chắc chắn chuyển bàn?", "Thông báo hệ thống", JOptionPane.YES_NO_OPTION);
+                if (quess == JOptionPane.YES_OPTION) {
+                    int kt_ChuyenBan = hoadon_BLL.ChuyenBan(maban, maban, _maHoaDon);
+                    kt++;
+                    if (kt_ChuyenBan == 1) {
+                        //cập nhật bàn trống
+                        Frm_QuanLyBan f = new Frm_QuanLyBan();
+                        f.UpdateTrangThaiVangKhach(_maBan); //bàn cũ
+                        f.UpdateTrangThaiCoKhach(maban); // có khách bàn mới
+                        ShowThongBao("Chuyển bàn bàn thành công");
+                    }
+                }
+            }
+        }
+        if (kt == 0) {
+            ShowThongBao("Không thể chuyển vào bàn này");
+        }
+    }//GEN-LAST:event_btn_Ban03ActionPerformed
+
+    private void btn_Ban04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Ban04ActionPerformed
+        String maban = "B004";
+        int kt = 0;
+        for (BAN_DTO items : lstBan_BLL) {
+            if (items.getMABAN().equalsIgnoreCase(maban) == true && items.getTRANGTHAI().equalsIgnoreCase("trong") == true) {
+                //chuyển được
+                int quess = JOptionPane.showConfirmDialog(null, "Chắc chắn chuyển bàn?", "Thông báo hệ thống", JOptionPane.YES_NO_OPTION);
+                if (quess == JOptionPane.YES_OPTION) {
+                    int kt_ChuyenBan = hoadon_BLL.ChuyenBan(maban, maban, _maHoaDon);
+                    kt++;
+                    if (kt_ChuyenBan == 1) {
+                        //cập nhật bàn trống
+                        Frm_QuanLyBan f = new Frm_QuanLyBan();
+                        f.UpdateTrangThaiVangKhach(_maBan); //bàn cũ
+                        f.UpdateTrangThaiCoKhach(maban); // có khách bàn mới
+                        ShowThongBao("Chuyển bàn bàn thành công");
+                    }
+                }
+            }
+        }
+        if (kt == 0) {
+            ShowThongBao("Không thể chuyển vào bàn này");
+        }
+    }//GEN-LAST:event_btn_Ban04ActionPerformed
+
+    private void btn_Ban05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Ban05ActionPerformed
+        String maban = "B005";
+        int kt = 0;
+        for (BAN_DTO items : lstBan_BLL) {
+            if (items.getMABAN().equalsIgnoreCase(maban) == true && items.getTRANGTHAI().equalsIgnoreCase("trong") == true) {
+                //chuyển được
+                int quess = JOptionPane.showConfirmDialog(null, "Chắc chắn chuyển bàn?", "Thông báo hệ thống", JOptionPane.YES_NO_OPTION);
+                if (quess == JOptionPane.YES_OPTION) {
+                    int kt_ChuyenBan = hoadon_BLL.ChuyenBan(maban, maban, _maHoaDon);
+                    kt++;
+                    if (kt_ChuyenBan == 1) {
+                        //cập nhật bàn trống
+                        Frm_QuanLyBan f = new Frm_QuanLyBan();
+                        f.UpdateTrangThaiVangKhach(_maBan); //bàn cũ
+                        f.UpdateTrangThaiCoKhach(maban); // có khách bàn mới
+                        ShowThongBao("Chuyển bàn bàn thành công");
+                    }
+                }
+            }
+        }
+        if (kt == 0) {
+            ShowThongBao("Không thể chuyển vào bàn này");
+        }
+    }//GEN-LAST:event_btn_Ban05ActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Dialog_HienThiDanhSachBan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Dialog_HienThiDanhSachBan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Dialog_HienThiDanhSachBan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Dialog_HienThiDanhSachBan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the dialog */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                Dialog_HienThiDanhSachBan dialog = new Dialog_HienThiDanhSachBan(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Panel_HienThiBan;
+    private javax.swing.JButton btn_Ban01;
+    private javax.swing.JButton btn_Ban02;
+    private javax.swing.JButton btn_Ban03;
+    private javax.swing.JButton btn_Ban04;
+    private javax.swing.JButton btn_Ban05;
+    private javax.swing.JLabel jLabel1;
+    // End of variables declaration//GEN-END:variables
+}
