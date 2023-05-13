@@ -43,7 +43,7 @@ public class HOADON_DAL {
     }
 
     public int ThanhToanHoaDon(String MaHoaDon, String giora) {
-        String query = "update HOADON set TRANGTHAI ='DA THANH TOAN',GIORA ='"+giora+"' where MAHOADON = '" + MaHoaDon + "'";
+        String query = "set dateformat dmy update HOADON set TRANGTHAI ='DA THANH TOAN',GIORA ='"+giora+"' where MAHOADON = '" + MaHoaDon + "'";
         int kt = con.executeUpdate(query);
         return kt;
     }

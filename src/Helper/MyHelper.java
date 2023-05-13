@@ -16,6 +16,23 @@ import java.util.Locale;
  */
 public class MyHelper {
 
+    public static String getMaKH() {
+        String maHD = "KH";
+        String ngaytemp = getDate();
+        String timeTemp = getTime();
+        String[] ngays = ngaytemp.split("/");
+        String[] times = timeTemp.split(":");
+
+        maHD += ngays[0];
+        maHD += ngays[1];
+        maHD += times[0];
+        maHD += times[1];
+        maHD += times[2];
+
+        System.out.println(maHD);
+        return maHD;
+    }
+
     public static String getMaHD() {
         String maHD = "HD";
         String ngaytemp = getDate();
@@ -27,7 +44,8 @@ public class MyHelper {
         maHD += ngays[1];
         maHD += times[0];
         maHD += times[1];
-        
+        maHD += times[2];
+
         System.out.println(maHD);
         return maHD;
     }
