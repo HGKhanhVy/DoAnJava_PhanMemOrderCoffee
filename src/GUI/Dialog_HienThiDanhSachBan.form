@@ -66,15 +66,19 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="btn_Ban01" min="-2" pref="69" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                          <Component id="btn_Ban02" min="-2" pref="69" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="btn_Ban03" min="-2" pref="69" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="btn_Ban04" min="-2" pref="69" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="btn_Ban02" min="-2" pref="69" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="btn_Ban05" min="-2" pref="69" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                          <Component id="btn_Ban06" min="-2" pref="69" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="btn_Ban03" alignment="0" min="-2" pref="69" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="191" max="32767" attributes="0"/>
               </Group>
@@ -86,16 +90,19 @@
                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btn_Ban01" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="btn_Ban02" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="btn_Ban03" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                       <Component id="btn_Ban04" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btn_Ban02" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                       <Component id="btn_Ban05" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="btn_Ban06" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                  <Component id="btn_Ban03" min="-2" pref="34" max="-2" attributes="0"/>
-                  <EmptySpace pref="113" max="32767" attributes="0"/>
+                  <EmptySpace pref="97" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -139,6 +146,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_Ban05ActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btn_Ban06">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="BAN 06"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_Ban06ActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
