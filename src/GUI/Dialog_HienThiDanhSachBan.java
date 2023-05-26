@@ -12,6 +12,9 @@ import java.awt.Point;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import BLL.*;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.print.attribute.standard.JobName;
 import javax.swing.JOptionPane;
@@ -31,11 +34,43 @@ public class Dialog_HienThiDanhSachBan extends javax.swing.JDialog {
     String _maHoaDon, _maBan, _tenBan;
     ArrayList<BAN_DTO> lstBan_BLL = new ArrayList<BAN_DTO>();
 
+    ArrayList<JButton> lstButon = new ArrayList<JButton>();
+
     public Dialog_HienThiDanhSachBan(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         lstBan_BLL = ban_BLL.showThongTinBan();
+        HienThiBan();
         LoadTrangThaiBan();
+    }
+
+    private void HienThiBan() {
+        ArrayList<BAN_DTO> lstBan = ban_BLL.showThongTinBan();
+        int slban = lstBan.size();
+        if (lstBan.size() != 0) {
+            Panel_HienThiBan.removeAll();
+            Panel_HienThiBan.setLayout(new GridLayout(0, 4, 10, 10));
+            Panel_HienThiBan.setSize(274, 444);
+            for (BAN_DTO item : lstBan) {
+                String _maBan = item.getMABAN();
+                JButton btn = new JButton(item.getTENBAN());
+                btn.setText(item.getTENBAN());
+                btn.setName(_maBan);
+                btn.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        ChuyenBan(_maBan);
+                    }
+                });
+                btn.setSize(10, 10);
+                lstButon.add(btn);
+                Panel_HienThiBan.add(btn);
+            }
+            Panel_HienThiBan.revalidate();
+            Panel_HienThiBan.repaint();
+        } else {
+            JOptionPane.showConfirmDialog(null, "Không có dữ liệu bàn để hiển thị", "Thông báo hệ thống", JOptionPane.DEFAULT_OPTION);
+        }
     }
 
     private void KTTrangThai_Ban(String _trangThaib, JButton btn) {
@@ -49,28 +84,8 @@ public class Dialog_HienThiDanhSachBan extends javax.swing.JDialog {
     }
 
     public void LoadTrangThaiBan() {
-        for (BAN_DTO items : lstBan_BLL) {
-            switch (items.getMABAN()) {
-
-                case "B001":
-                    KTTrangThai_Ban(items.getTRANGTHAI(), btn_Ban01);
-                    break;
-                case "B002":
-                    KTTrangThai_Ban(items.getTRANGTHAI(), btn_Ban02);
-                    break;
-                case "B003":
-                    KTTrangThai_Ban(items.getTRANGTHAI(), btn_Ban03);
-                    break;
-                case "B004":
-                    KTTrangThai_Ban(items.getTRANGTHAI(), btn_Ban04);
-                    break;
-                case "B005":
-                    KTTrangThai_Ban(items.getTRANGTHAI(), btn_Ban05);
-                    break;
-                case "B006":
-                    KTTrangThai_Ban(items.getTRANGTHAI(), btn_Ban06);
-                    break;
-            }
+        for (JButton items : lstButon) {
+            KTTrangThai_Ban(ban_BLL.getTrangThai(items.getName().toString()), items);
         }
     }
 
@@ -97,6 +112,7 @@ public class Dialog_HienThiDanhSachBan extends javax.swing.JDialog {
     public void setTrangThaiCoKhach(JButton btn) {
         btn.setBackground(Color.RED);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -210,22 +226,48 @@ public class Dialog_HienThiDanhSachBan extends javax.swing.JDialog {
                         .addGap(127, 127, 127)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
+                        .addGap(20, 20, 20)
                         .addComponent(Panel_HienThiBan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Panel_HienThiBan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(18, 18, 18))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_Ban05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Ban05ActionPerformed
+        ChuyenBan("B005");
+    }//GEN-LAST:event_btn_Ban05ActionPerformed
+
+    private void btn_Ban03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Ban03ActionPerformed
+        ChuyenBan("B003");
+    }//GEN-LAST:event_btn_Ban03ActionPerformed
+
+    private void btn_Ban01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Ban01ActionPerformed
+        // TODO add your handling code here:
+        ChuyenBan("B001");
+    }//GEN-LAST:event_btn_Ban01ActionPerformed
+
+    private void btn_Ban02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Ban02ActionPerformed
+        ChuyenBan("B002");
+    }//GEN-LAST:event_btn_Ban02ActionPerformed
+
+    private void btn_Ban04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Ban04ActionPerformed
+        ChuyenBan("B004");
+    }//GEN-LAST:event_btn_Ban04ActionPerformed
+
+    private void btn_Ban06ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Ban06ActionPerformed
+        // TODO add your handling code here:
+        ChuyenBan("B005");
+    }//GEN-LAST:event_btn_Ban06ActionPerformed
 
     private void ShowThongBao(String ThongBao) {
         JOptionPane.showConfirmDialog(null, ThongBao, "Thông báo hệ thống", JOptionPane.DEFAULT_OPTION);
@@ -256,31 +298,6 @@ public class Dialog_HienThiDanhSachBan extends javax.swing.JDialog {
             ShowThongBao("Không thể chuyển vào bàn này");
         }
     }
-    private void btn_Ban01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Ban01ActionPerformed
-        // TODO add your handling code here:
-        ChuyenBan("B001");
-    }//GEN-LAST:event_btn_Ban01ActionPerformed
-
-    private void btn_Ban02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Ban02ActionPerformed
-        ChuyenBan("B002");
-    }//GEN-LAST:event_btn_Ban02ActionPerformed
-
-    private void btn_Ban03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Ban03ActionPerformed
-        ChuyenBan("B003");
-    }//GEN-LAST:event_btn_Ban03ActionPerformed
-
-    private void btn_Ban04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Ban04ActionPerformed
-        ChuyenBan("B004");
-    }//GEN-LAST:event_btn_Ban04ActionPerformed
-
-    private void btn_Ban05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Ban05ActionPerformed
-        ChuyenBan("B005");
-    }//GEN-LAST:event_btn_Ban05ActionPerformed
-
-    private void btn_Ban06ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Ban06ActionPerformed
-        // TODO add your handling code here:
-        ChuyenBan("B005");
-    }//GEN-LAST:event_btn_Ban06ActionPerformed
 
     /**
      * @param args the command line arguments
