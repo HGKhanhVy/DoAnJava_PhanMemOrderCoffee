@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cf60d2d7-80ba-423f-a888-8c93c34de6ee">
+	<property name="ireport.zoom" value="1.0000000000000044"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="maPN" class="java.lang.String">
+		<defaultValueExpression><![CDATA["P02"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     CHITIET_PHIEUNHAP."MAPHIEUNHAP" AS CHITIET_PHIEUNHAP_MAPHIEUNHAP,
+     CHITIET_PHIEUNHAP."MANGUYENLIEU" AS CHITIET_PHIEUNHAP_MANGUYENLIEU,
+     CHITIET_PHIEUNHAP."TENNGUYENLIEU" AS CHITIET_PHIEUNHAP_TENNGUYENLIEU,
+     CHITIET_PHIEUNHAP."SOLUONG" AS CHITIET_PHIEUNHAP_SOLUONG,
+     CHITIET_PHIEUNHAP."DVT" AS CHITIET_PHIEUNHAP_DVT,
+     CHITIET_PHIEUNHAP."GIA" AS CHITIET_PHIEUNHAP_GIA,
+     CHITIET_PHIEUNHAP."THANHTIEN" AS CHITIET_PHIEUNHAP_THANHTIEN,
+     NGUYENLIEU."MANGUYENLIEU" AS NGUYENLIEU_MANGUYENLIEU,
+     NHACUNGCAP."MANHACUNGCAP" AS NHACUNGCAP_MANHACUNGCAP,
+     NHANVIEN."MANHANVIEN" AS NHANVIEN_MANHANVIEN,
+     PHIEUNHAP."MAPHIEUNHAP" AS PHIEUNHAP_MAPHIEUNHAP,
+     PHIEUNHAP."TENPHIEUNHAP" AS PHIEUNHAP_TENPHIEUNHAP,
+     PHIEUNHAP."MANHANVIEN" AS PHIEUNHAP_MANHANVIEN,
+     PHIEUNHAP."MANHACUNGCAP" AS PHIEUNHAP_MANHACUNGCAP,
+     PHIEUNHAP."NGAYNHAP" AS PHIEUNHAP_NGAYNHAP,
+     PHIEUNHAP."TONGTIEN" AS PHIEUNHAP_TONGTIEN
+FROM
+     "dbo"."NGUYENLIEU" NGUYENLIEU INNER JOIN "dbo"."CHITIET_PHIEUNHAP" CHITIET_PHIEUNHAP ON NGUYENLIEU."MANGUYENLIEU" = CHITIET_PHIEUNHAP."MANGUYENLIEU"
+     INNER JOIN "dbo"."PHIEUNHAP" PHIEUNHAP ON CHITIET_PHIEUNHAP."MAPHIEUNHAP" = PHIEUNHAP."MAPHIEUNHAP"
+     INNER JOIN "dbo"."NHACUNGCAP" NHACUNGCAP ON PHIEUNHAP."MANHACUNGCAP" = NHACUNGCAP."MANHACUNGCAP"
+     INNER JOIN "dbo"."NHANVIEN" NHANVIEN ON PHIEUNHAP."MANHANVIEN" = NHANVIEN."MANHANVIEN"
+WHERE
+      PHIEUNHAP."MAPHIEUNHAP" = $P{maPN}]]>
+	</queryString>
+	<field name="CHITIET_PHIEUNHAP_MAPHIEUNHAP" class="java.lang.String"/>
+	<field name="CHITIET_PHIEUNHAP_MANGUYENLIEU" class="java.lang.String"/>
+	<field name="CHITIET_PHIEUNHAP_TENNGUYENLIEU" class="java.lang.String"/>
+	<field name="CHITIET_PHIEUNHAP_SOLUONG" class="java.lang.Double"/>
+	<field name="CHITIET_PHIEUNHAP_DVT" class="java.lang.String"/>
+	<field name="CHITIET_PHIEUNHAP_GIA" class="java.lang.Double"/>
+	<field name="CHITIET_PHIEUNHAP_THANHTIEN" class="java.lang.Double"/>
+	<field name="NGUYENLIEU_MANGUYENLIEU" class="java.lang.String"/>
+	<field name="NHACUNGCAP_MANHACUNGCAP" class="java.lang.String"/>
+	<field name="NHANVIEN_MANHANVIEN" class="java.lang.String"/>
+	<field name="PHIEUNHAP_MAPHIEUNHAP" class="java.lang.String"/>
+	<field name="PHIEUNHAP_TENPHIEUNHAP" class="java.lang.String"/>
+	<field name="PHIEUNHAP_MANHANVIEN" class="java.lang.String"/>
+	<field name="PHIEUNHAP_MANHACUNGCAP" class="java.lang.String"/>
+	<field name="PHIEUNHAP_NGAYNHAP" class="java.sql.Timestamp"/>
+	<field name="PHIEUNHAP_TONGTIEN" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="73" splitType="Stretch">
+			<staticText>
+				<reportElement x="143" y="10" width="272" height="34" uuid="e86a38a5-d3fe-4192-b587-17c3817227df"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="26" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PHIEU NHAP HANG]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="164" y="44" width="220" height="17" uuid="9a85fb8b-cbae-401c-b793-12a6f26615e7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[.......................................................]]></text>
+			</staticText>
+			<elementGroup/>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="144" splitType="Stretch">
+			<staticText>
+				<reportElement x="16" y="29" width="78" height="20" uuid="6d0099f0-8e4e-4c97-9a91-2ed7cb587f13"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ma Phieu:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="16" y="62" width="78" height="20" uuid="1366951e-f454-419e-ab60-019b25adfec5"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ten Phieu:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="16" y="94" width="65" height="20" uuid="4672dc9d-6565-4d2d-bdc7-83f97c789ac4"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ma NV: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="105" y="29" width="100" height="20" uuid="59fee17d-08b0-4ffc-8cca-443482366ada"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PHIEUNHAP_MAPHIEUNHAP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="105" y="62" width="221" height="20" uuid="cd348ba6-5096-49b2-b922-d8e9efba56fd"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PHIEUNHAP_TENPHIEUNHAP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="415" y="29" width="127" height="20" uuid="40dbe1ac-7c42-41b8-8976-9480bf9c5279"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PHIEUNHAP_NGAYNHAP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="105" y="94" width="100" height="20" uuid="66f8f7a8-8bed-442c-873a-83723b804331"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PHIEUNHAP_MANHANVIEN}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="11" y="14" width="52" height="20" uuid="24ac7c5f-c021-4a0e-9e9e-7d160ee69f31"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MA NCC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="78" y="14" width="54" height="20" uuid="fd4aecb8-7036-4c50-b0c6-c6433f1f9fad"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MA NL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="149" y="14" width="95" height="20" uuid="4f75d9fd-ef15-44cc-8d40-e3a62443904c"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TEN NL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="259" y="14" width="36" height="20" uuid="01d0bda1-62c2-4c3a-bc72-d5722a8b151c"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="305" y="14" width="62" height="20" uuid="eb99f4ed-0259-4052-aad3-aa6b9ddc728c"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DVT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="381" y="12" width="72" height="20" uuid="0baeceee-4c42-469f-9e4d-f56799a41ee3"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DON GIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="467" y="14" width="78" height="20" uuid="a0c81518-6a28-42b1-afe7-5b1e59b3cfaa"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[THANH TIEN]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="9" width="555" height="1" uuid="8f13267d-d126-4f3f-94b0-8f1b781ba670"/>
+			</line>
+			<line>
+				<reportElement x="0" y="34" width="555" height="1" uuid="bb29ab98-7550-4142-8a37-699844009a59"/>
+			</line>
+			<line>
+				<reportElement x="0" y="10" width="1" height="24" uuid="9475dd45-435a-4403-8fe0-2d24b2356ec8"/>
+			</line>
+			<line>
+				<reportElement x="70" y="10" width="1" height="24" uuid="6800e16f-a6ff-4b6e-99a1-3d6804f2de21"/>
+			</line>
+			<line>
+				<reportElement x="139" y="10" width="1" height="24" uuid="c26af50d-b8e0-4d7c-8256-a31e04b73f1b"/>
+			</line>
+			<line>
+				<reportElement x="250" y="10" width="1" height="24" uuid="782d6d51-06ac-4696-a796-54f38e677fda"/>
+			</line>
+			<line>
+				<reportElement x="299" y="10" width="1" height="24" uuid="b26dede8-dbe2-4df4-a15c-ffd2fe8f5a3b"/>
+			</line>
+			<line>
+				<reportElement x="373" y="10" width="1" height="24" uuid="52bee8d6-abf4-48e6-aec6-102f80c31389"/>
+			</line>
+			<line>
+				<reportElement x="458" y="10" width="1" height="24" uuid="f4b664f4-92c9-4d0d-b701-c7500c820e24"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="40" splitType="Stretch">
+			<textField>
+				<reportElement x="5" y="8" width="60" height="20" uuid="099d260f-2f5c-47ae-8676-dfbe20f24bf4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PHIEUNHAP_MANHACUNGCAP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="307" y="8" width="60" height="20" uuid="13938faf-5d05-46c8-b727-8af825715750"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CHITIET_PHIEUNHAP_DVT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="76" y="8" width="56" height="20" uuid="9ec4af76-ea95-47d2-8ce9-c20968436128"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CHITIET_PHIEUNHAP_MANGUYENLIEU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="259" y="8" width="36" height="20" uuid="19169281-64b5-40c4-8ac8-4a32fdae9591"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CHITIET_PHIEUNHAP_SOLUONG}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="149" y="8" width="95" height="20" uuid="4e68fafe-d26c-47b2-88b3-666d001cc020"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CHITIET_PHIEUNHAP_TENNGUYENLIEU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="380" y="8" width="69" height="20" uuid="3814cf36-3dcd-427b-9cf2-867c10bbc686"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CHITIET_PHIEUNHAP_GIA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="464" y="8" width="78" height="20" uuid="f1a81423-5b77-4aa2-b2dc-bd3415db67e9"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CHITIET_PHIEUNHAP_THANHTIEN}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="554" y="-27" width="1" height="26" uuid="50db1593-1d9a-41b1-9ec0-bba575d6f24f"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="67" splitType="Stretch">
+			<staticText>
+				<reportElement x="16" y="21" width="116" height="20" uuid="e0b555dd-4733-49c2-89ac-77697c87320d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TONG THANH TIEN:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="213" y="21" width="31" height="20" uuid="9394c20d-374d-4cb2-ae0e-47235226c6a8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[(VND)]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="140" y="21" width="65" height="20" forecolor="#FF0033" uuid="84e6dffb-3d3f-4bbc-91f3-ef3c14f127a9"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PHIEUNHAP_TONGTIEN}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="47" width="555" height="1" uuid="d2391ed8-ba92-4e39-973a-be0564091955"/>
+			</line>
+			<line>
+				<reportElement x="0" y="13" width="555" height="1" uuid="2b616977-1384-4431-9545-360feb889028"/>
+			</line>
+			<line>
+				<reportElement x="554" y="-329" width="1" height="377" uuid="19b5a3c2-e7d3-4096-a5e8-b754817adc81"/>
+			</line>
+			<line>
+				<reportElement x="0" y="-329" width="1" height="377" uuid="7e2070bf-24e2-4b08-872d-cff70c802409"/>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="161" splitType="Stretch">
+			<staticText>
+				<reportElement x="21" y="38" width="122" height="20" uuid="f582ec5c-4009-403f-8b2d-d33673ea2fb0"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nguoi lap phieu]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="341" y="1" width="208" height="20" uuid="c65d9e7b-d998-4715-8073-514fcc64cbcc"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Ngay............. thang........ nam............]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="384" y="36" width="116" height="20" uuid="b19382d0-6d62-42e3-812c-0aab1f6f6a75"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ke toan truong]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="358" y="56" width="184" height="20" uuid="6094c92a-cb59-4598-a3b7-24ab888763ca"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[(Hoac bo phan co nhu cau nhap hang)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="392" y="76" width="100" height="20" uuid="64a9b29f-50fc-42c9-b4f8-bb1156065755"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[(Ky va ghi ro ho ten)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="32" y="58" width="100" height="20" uuid="24a2c72f-4d35-4067-9a62-a0f2dbbeb045"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[(Ky va ghi ro ho ten)]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
