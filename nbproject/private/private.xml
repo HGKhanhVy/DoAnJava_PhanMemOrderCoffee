@@ -3,30 +3,28 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/DoAnJava_PhanMemOrderCoffee/src/GUI/Panel_NguyenLieu.java</file>
-            <file>file:/D:/DoAnJava_PhanMemOrderCoffee/src/BLL/CT_HOADON_BLL.java</file>
-            <file>file:/D:/DoAnJava_PhanMemOrderCoffee/src/DTO/PHIEUNHAP_DTO.java</file>
-            <file>file:/D:/DoAnJava_PhanMemOrderCoffee/src/GUI/Panel_ChiTietHD_Ban.java</file>
-            <file>file:/D:/DoAnJava_PhanMemOrderCoffee/src/DAL/HOADON_DAL.java</file>
-            <file>file:/D:/DoAnJava_PhanMemOrderCoffee/src/BLL/PHIEUNHAP_BLL.java</file>
-            <file>file:/D:/DoAnJava_PhanMemOrderCoffee/src/DAL/THUCUONG_DAL.java</file>
             <file>file:/D:/DoAnJava_PhanMemOrderCoffee/src/GUI/Panel_PhieuNhap.java</file>
-            <file>file:/D:/DoAnJava_PhanMemOrderCoffee/src/DTO/HOADON_DTO.java</file>
-            <file>file:/D:/DoAnJava_PhanMemOrderCoffee/src/GUI/Dialog_HienThiDanhSachBan.java</file>
-            <file>file:/D:/DoAnJava_PhanMemOrderCoffee/src/DAL/BAN_DAL.java</file>
-            <file>file:/D:/DoAnJava_PhanMemOrderCoffee/src/DAL/CT_HOADON_DAL.java</file>
-            <file>file:/D:/DoAnJava_PhanMemOrderCoffee/src/DTO/NhaCungCap_DTO.java</file>
-            <file>file:/D:/DoAnJava_PhanMemOrderCoffee/src/GUI/Frm_QuanLyBan.java</file>
-            <file>file:/D:/DoAnJava_PhanMemOrderCoffee/src/GUI/NhapHang.java</file>
-            <file>file:/D:/DoAnJava_PhanMemOrderCoffee/src/GUI/Panel_NhaCungCap.java</file>
-            <file>file:/D:/DoAnJava_PhanMemOrderCoffee/src/Report/rpt_HoaDon.jrxml</file>
-            <file>file:/D:/DoAnJava_PhanMemOrderCoffee/src/Report/rpt_NhapHang.jrxml</file>
-            <file>file:/D:/DoAnJava_PhanMemOrderCoffee/src/BLL/BAN_BLL.java</file>
-            <file>file:/D:/DoAnJava_PhanMemOrderCoffee/src/DAL/NHANVIEN_DAL.java</file>
-            <file>file:/D:/DoAnJava_PhanMemOrderCoffee/src/Connect/Connect_DB.java</file>
-            <file>file:/D:/DoAnJava_PhanMemOrderCoffee/src/BLL/HOADON_BLL.java</file>
+            <file>file:/D:/DoAnJava_PhanMemOrderCoffee/src/DAL/THUCUONG_DAL.java</file>
             <file>file:/D:/DoAnJava_PhanMemOrderCoffee/src/DAL/PHIEUNHAP_DAL.java</file>
+            <file>file:/D:/DoAnJava_PhanMemOrderCoffee/src/GUI/Panel_ChiTietHD_Ban.java</file>
+            <file>file:/D:/DoAnJava_PhanMemOrderCoffee/src/GUI/Panel_NhaCungCap.java</file>
+            <file>file:/D:/DoAnJava_PhanMemOrderCoffee/src/GUI/Panel_NguyenLieu.java</file>
+            <file>file:/D:/DoAnJava_PhanMemOrderCoffee/src/Connect/Connect_DB.java</file>
+            <file>file:/D:/DoAnJava_PhanMemOrderCoffee/src/BLL/CT_HOADON_BLL.java</file>
+            <file>file:/D:/DoAnJava_PhanMemOrderCoffee/src/DTO/NhaCungCap_DTO.java</file>
+            <file>file:/D:/DoAnJava_PhanMemOrderCoffee/src/BLL/BAN_BLL.java</file>
             <file>file:/D:/DoAnJava_PhanMemOrderCoffee/src/DTO/CT_HOADON_DTO.java</file>
+            <file>file:/D:/DoAnJava_PhanMemOrderCoffee/src/BLL/HOADON_BLL.java</file>
+            <file>file:/D:/DoAnJava_PhanMemOrderCoffee/src/DAL/HOADON_DAL.java</file>
+            <file>file:/D:/DoAnJava_PhanMemOrderCoffee/src/GUI/NhapHang.java</file>
+            <file>file:/D:/DoAnJava_PhanMemOrderCoffee/src/DTO/HOADON_DTO.java</file>
+            <file>file:/D:/DoAnJava_PhanMemOrderCoffee/src/BLL/PHIEUNHAP_BLL.java</file>
+            <file>file:/D:/DoAnJava_PhanMemOrderCoffee/src/GUI/Frm_QuanLyBan.java</file>
+            <file>file:/D:/DoAnJava_PhanMemOrderCoffee/src/DTO/PHIEUNHAP_DTO.java</file>
+            <file>file:/D:/DoAnJava_PhanMemOrderCoffee/src/DAL/NHANVIEN_DAL.java</file>
+            <file>file:/D:/DoAnJava_PhanMemOrderCoffee/src/DAL/BAN_DAL.java</file>
+            <file>file:/D:/DoAnJava_PhanMemOrderCoffee/src/GUI/Dialog_HienThiDanhSachBan.java</file>
+            <file>file:/D:/DoAnJava_PhanMemOrderCoffee/src/DAL/CT_HOADON_DAL.java</file>
         </group>
     </open-files>
 </project-private>

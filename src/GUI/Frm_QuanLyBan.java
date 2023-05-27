@@ -9,8 +9,13 @@ import BLL.*;
 import DTO.*;
 import java.awt.Button;
 import java.awt.Color;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import jdk.nashorn.internal.runtime.regexp.joni.EncodingHelper;
 
@@ -27,9 +32,12 @@ public class Frm_QuanLyBan extends javax.swing.JFrame {
     BAN_BLL ban_BLL = new BAN_BLL();
     HOADON_BLL hoadon_bll = new HOADON_BLL();
 
+    ArrayList<JButton> lstButon = new ArrayList<JButton>();
+
     public Frm_QuanLyBan() {
         initComponents();
         LoadData();
+        HienThiBan();
     }
 
     private void LoadData() {
@@ -39,7 +47,7 @@ public class Frm_QuanLyBan extends javax.swing.JFrame {
         panel_control_CTHD.add(chirl_panel);
         panel_control_CTHD.validate();
         panel_control_CTHD.setSize(930, 446);
-        LoadTrangThaiBan();
+        //LoadTrangThaiBan();
     }
 
     private void CapNhatTrangThaiBan(String _trangThai, JButton btn) {
@@ -52,29 +60,39 @@ public class Frm_QuanLyBan extends javax.swing.JFrame {
         }
     }
 
-    public void LoadTrangThaiBan() {
-        for (BAN_DTO items : ban_BLL.showThongTinBan()) {
-            switch (items.getMABAN()) {
-
-                case "B001":
-                    CapNhatTrangThaiBan(items.getTRANGTHAI(), btn_Ban01);
-                    break;
-                case "B002":
-                    CapNhatTrangThaiBan(items.getTRANGTHAI(), btn_Ban02);
-                    break;
-                case "B003":
-                    CapNhatTrangThaiBan(items.getTRANGTHAI(), btn_Ban03);
-                    break;
-                case "B004":
-                    CapNhatTrangThaiBan(items.getTRANGTHAI(), btn_Ban04);
-                    break;
-                case "B005":
-                    CapNhatTrangThaiBan(items.getTRANGTHAI(), btn_Ban05);
-                    break;
-                case "B006":
-                    CapNhatTrangThaiBan(items.getTRANGTHAI(), btn_Ban06);
-                    break;
+    private void HienThiBan() {
+        ArrayList<BAN_DTO> lstBan = ban_BLL.showThongTinBan();
+        int slban = lstBan.size();
+        if (lstBan.size() != 0) {
+            panel_HienThiBan.removeAll();
+            panel_HienThiBan.setLayout(new GridLayout(0, 4, 10, 10));
+            panel_HienThiBan.setSize(274, 444);
+            for (BAN_DTO item : lstBan) {
+                String _maBan = item.getMABAN();
+                JButton btn = new JButton(item.getTENBAN());
+                btn.setText(item.getTENBAN());
+                btn.setName(_maBan);
+                btn.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        LoadCT_HoaDon(item.getMABAN(), item.getTENBAN());
+                        LoadTrangThaiBan();
+                    }
+                });
+                btn.setSize(10, 10);
+                lstButon.add(btn);
+                panel_HienThiBan.add(btn);
             }
+            panel_HienThiBan.revalidate();
+            panel_HienThiBan.repaint();
+        } else {
+            JOptionPane.showConfirmDialog(null, "Không có dữ liệu bàn để hiển thị", "Thông báo hệ thống", JOptionPane.DEFAULT_OPTION);
+        }
+    }
+
+    public void LoadTrangThaiBan() {
+        for (JButton items : lstButon) {
+            CapNhatTrangThaiBan(ban_BLL.getTrangThai(items.getName()), items);
         }
     }
 
@@ -88,107 +106,27 @@ public class Frm_QuanLyBan extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        btn_Ban02 = new javax.swing.JButton();
-        btn_Ban01 = new javax.swing.JButton();
-        btn_Ban03 = new javax.swing.JButton();
-        btn_Ban05 = new javax.swing.JButton();
-        btn_Ban04 = new javax.swing.JButton();
-        btn_Ban06 = new javax.swing.JButton();
+        panel_HienThiBan = new javax.swing.JPanel();
         panel_control_CTHD = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 255, 153));
 
+        jLabel1.setBackground(new java.awt.Color(0, 255, 153));
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("QUẢN LÝ BÀN");
 
-        jPanel1.setBackground(new java.awt.Color(106, 166, 255));
+        panel_HienThiBan.setBackground(new java.awt.Color(106, 166, 255));
 
-        btn_Ban02.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btn_Ban02.setText("BÀN 02");
-        btn_Ban02.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_Ban02ActionPerformed(evt);
-            }
-        });
-
-        btn_Ban01.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btn_Ban01.setText("BÀN 01");
-        btn_Ban01.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_Ban01ActionPerformed(evt);
-            }
-        });
-
-        btn_Ban03.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btn_Ban03.setText("BÀN 03");
-        btn_Ban03.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_Ban03ActionPerformed(evt);
-            }
-        });
-
-        btn_Ban05.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btn_Ban05.setText("BÀN 05");
-        btn_Ban05.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_Ban05ActionPerformed(evt);
-            }
-        });
-
-        btn_Ban04.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btn_Ban04.setText("BÀN 04");
-        btn_Ban04.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_Ban04ActionPerformed(evt);
-            }
-        });
-
-        btn_Ban06.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btn_Ban06.setText("BÀN 06");
-        btn_Ban06.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_Ban06ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btn_Ban03)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_Ban04))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btn_Ban01)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_Ban02))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btn_Ban05)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_Ban06)))
-                .addContainerGap(72, Short.MAX_VALUE))
+        javax.swing.GroupLayout panel_HienThiBanLayout = new javax.swing.GroupLayout(panel_HienThiBan);
+        panel_HienThiBan.setLayout(panel_HienThiBanLayout);
+        panel_HienThiBanLayout.setHorizontalGroup(
+            panel_HienThiBanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 274, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_Ban01, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_Ban02, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_Ban04, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_Ban03, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_Ban05, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_Ban06, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(275, Short.MAX_VALUE))
+        panel_HienThiBanLayout.setVerticalGroup(
+            panel_HienThiBanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 444, Short.MAX_VALUE)
         );
 
         panel_control_CTHD.setBackground(new java.awt.Color(204, 255, 255));
@@ -201,9 +139,9 @@ public class Frm_QuanLyBan extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(panel_HienThiBan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(panel_control_CTHD, javax.swing.GroupLayout.PREFERRED_SIZE, 992, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(33, Short.MAX_VALUE))
@@ -215,8 +153,8 @@ public class Frm_QuanLyBan extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(panel_control_CTHD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(80, Short.MAX_VALUE))
+                    .addComponent(panel_HienThiBan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
 
         pack();
@@ -236,58 +174,32 @@ public class Frm_QuanLyBan extends javax.swing.JFrame {
 
     public void UpdateTrangThaiCoKhach(String maBan) {
         ban_BLL.CapNhatTrangThai(maBan, "hetcho");
-        LoadTrangThaiBan();
+        //LoadTrangThaiBan();
     }
 
     public void UpdateTrangThaiVangKhach(String maBan) {
         ban_BLL.CapNhatTrangThai(maBan, "trong");
-        LoadTrangThaiBan();
+        //LoadTrangThaiBan();
     }
 
     private void LoadCT_HoaDon(String _maBan, String _tenBan) {
-        LoadTrangThaiBan();
+        // LoadTrangThaiBan();
         Panel_ChiTietHD_Ban CT_HD_ban = new Panel_ChiTietHD_Ban();
         String MaBan = _maBan;
         String ttBan = _tenBan;
-        chirl_panel = CT_HD_ban;
         CT_HD_ban.setTenBan(ttBan);
         String trangthai = ban_BLL.getTrangThai(MaBan);
         CT_HD_ban.SetMaBan(MaBan, trangthai);
-        if (trangthai != "trong") {
+        if (trangthai.equalsIgnoreCase("trong") == false) {
             CT_HD_ban.SetMaHoaDon(hoadon_bll.getMaHoaDonByBan(MaBan));
         }
         CT_HD_ban.LoadChiTietHoaDon();
+        chirl_panel = CT_HD_ban;
         chirl_panel.removeAll();
         panel_control_CTHD.removeAll();
         panel_control_CTHD.add(chirl_panel);
         panel_control_CTHD.validate();
     }
-    private void btn_Ban01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Ban01ActionPerformed
-        LoadCT_HoaDon("B001", "Bàn Số 1");
-    }//GEN-LAST:event_btn_Ban01ActionPerformed
-
-    private void btn_Ban02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Ban02ActionPerformed
-        LoadCT_HoaDon("B002", "bàn số 02");
-    }//GEN-LAST:event_btn_Ban02ActionPerformed
-
-    private void btn_Ban03ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Ban03ActionPerformed
-
-        // TODO add your handling code here:
-        LoadCT_HoaDon("B003", "bàn số 03");
-    }//GEN-LAST:event_btn_Ban03ActionPerformed
-
-    private void btn_Ban05ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Ban05ActionPerformed
-        LoadCT_HoaDon("B005", "bàn số 05");
-    }//GEN-LAST:event_btn_Ban05ActionPerformed
-
-    private void btn_Ban04ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Ban04ActionPerformed
-        LoadCT_HoaDon("B004", "bàn số 04");
-    }//GEN-LAST:event_btn_Ban04ActionPerformed
-
-    private void btn_Ban06ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Ban06ActionPerformed
-        // TODO add your handling code here:
-        LoadCT_HoaDon("B006", "bàn số 06");
-    }//GEN-LAST:event_btn_Ban06ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -325,14 +237,8 @@ public class Frm_QuanLyBan extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_Ban01;
-    private javax.swing.JButton btn_Ban02;
-    private javax.swing.JButton btn_Ban03;
-    private javax.swing.JButton btn_Ban04;
-    private javax.swing.JButton btn_Ban05;
-    private javax.swing.JButton btn_Ban06;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel panel_HienThiBan;
     private javax.swing.JPanel panel_control_CTHD;
     // End of variables declaration//GEN-END:variables
 }
