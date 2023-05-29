@@ -75,11 +75,7 @@
                   <Component id="jLabel3" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="cbx_LoaiNuocUong" alignment="3" pref="30" max="32767" attributes="0"/>
               </Group>
-<<<<<<< HEAD
-              <EmptySpace type="unrelated" max="32767" attributes="0"/>
-=======
               <EmptySpace pref="10" max="32767" attributes="0"/>
->>>>>>> origin/main
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jScrollPane1" min="-2" pref="333" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
