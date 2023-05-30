@@ -7,6 +7,7 @@ package BLL;
 
 import DAL.*;
 import DTO.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -29,5 +30,17 @@ public class HOADON_BLL {
     }
      public int ChuyenBan(String MaBan, String TenBan, String MaHoaDon){
        return hoadon_dal.ChuyenBan(MaBan, TenBan, MaHoaDon);
+    }
+    public String[] listTitleHD(){
+        return hoadon_dal.listTitleHD();
+    }
+    public ArrayList<HOADON_DTO> getDSHDTheoNgayThang(String ngay, String ngayDen){
+        return hoadon_dal.getDSHDTheoNgayThang(ngay, ngayDen);
+    }
+    public float GetTongTien(String maHD) {
+        return hoadon_dal.GetTongTien(maHD);
+    }
+    public int GetTongSoHD(String ngay, String ngayDen) {
+        return hoadon_dal.GetTongSoHD(ngay, ngayDen);
     }
 }
