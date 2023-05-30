@@ -54,4 +54,148 @@ public class THUCUONG_DAL {
         }
         return lstAllThucUong;
     }
+    public THUCUONG_DTO LoadNuoc(int index, THUCUONG_DTO ncTemp) 
+    {
+        THUCUONG_DTO nuoc = lstAllThucUong.get(index);
+        ncTemp.setMANUOC(nuoc.getMANUOC());
+        ncTemp.setTENNUOC(nuoc.getTENNUOC());
+        ncTemp.setGIA(nuoc.getGIA());
+        ncTemp.setSIZE(nuoc.getSIZE());
+        return ncTemp;
+    }
+    public String GetMaLoaiNuoc(String maNuoc)
+    {
+        String maLoai = "";
+        try {
+            String sql ="Select MALOAI from THUCUONG where MANUOC='"+maNuoc+"'";
+            Connect_DB cn = new Connect_DB();
+            cn.getCn();
+            ResultSet rs = cn.executeQuery(sql);
+            while(rs.next())
+            {
+                maLoai = rs.getString("MALOAI").trim();
+            }
+            cn.close();
+        } catch (Exception e) 
+        {
+            maLoai = "";
+            return maLoai;
+        }
+        return maLoai;
+    }
+    public int getSoLuongNuoc()
+    {
+        int sl = 0;
+        try {
+            String sql ="Select COUNT(*) AS SOLUONG from THUCUONG";
+            Connect_DB cn = new Connect_DB();
+            cn.getCn();
+            ResultSet rs = cn.executeQuery(sql);
+            while(rs.next())
+            {
+                sl = rs.getInt("SOLUONG");
+            }
+            cn.close();
+        } catch (Exception e) 
+        {
+            sl = 0;
+            return sl;
+        }
+        return sl;
+    }
+    public int themNuoc(THUCUONG_DTO lnc)
+    {
+        int i = 0;
+        try
+        {
+            String sql = "INSERT INTO THUCUONG VALUES('"+lnc.getMANUOC()+"', '"+lnc.getMALOAI()+"', N'"+lnc.getTENNUOC()+"', '"+lnc.getGIA()+"', '"+lnc.getSIZE()+"', N'"+lnc.getTRANGTHAI()+"')";
+            Connect_DB cn = new Connect_DB();
+            cn.getCn();
+            i = cn.executeUpdate(sql);
+            lstAllThucUong = getALL();
+            cn.close();
+        } catch(Exception e)
+        {
+            return 0;
+        }   
+        return 1;
+    }
+    public int updateNuoc(THUCUONG_DTO lnc)
+    {
+        int i = 0;
+        try
+        {
+            String sql = "Update THUCUONG set TENNUOC=N'"+lnc.getTENNUOC()+"', GIA='"+lnc.getGIA()+"', SIZE='"+lnc.getSIZE()+"', TRANGTHAI=N'"+lnc.getTRANGTHAI()+"' Where MANUOC='"+lnc.getMANUOC()+"'";
+            Connect_DB cn = new Connect_DB();
+            cn.getCn();
+            i = cn.executeUpdate(sql);
+            lstAllThucUong = getALL();
+            cn.close();
+        } catch(Exception e)
+        {
+            return 0;
+        }   
+        return 1;
+    }
+    public int deleteNuoc(String maNuoc)
+    {
+        int i = 0;
+        try
+        {
+            String sql = "Delete from THUCUONG where MANUOC='"+maNuoc+"'";
+            Connect_DB cn = new Connect_DB();
+            cn.getCn();
+            i = cn.executeUpdate(sql);
+            lstAllThucUong = getALL();
+            cn.close();
+        } catch(Exception e)
+        {
+            return 0;
+        }   
+        return 1;
+    }
+    public String GetTrangThai(String maNuoc)
+    {
+        String trThai = "";
+        try {
+            String sql ="Select TRANGTHAI from THUCUONG where MANUOC='"+maNuoc+"'";
+            Connect_DB cn = new Connect_DB();
+            cn.getCn();
+            ResultSet rs = cn.executeQuery(sql);
+            while(rs.next())
+            {
+                trThai = rs.getString("TRANGTHAI").trim();
+            }
+            cn.close();
+        } catch (Exception e) 
+        {
+            trThai = "";
+            return trThai;
+        }
+        return trThai;
+    }
+    public int CheckExist(String tenNuoc)
+    {
+        for(int i = 0;i < lstAllThucUong.size(); i++)
+        {
+            if(lstAllThucUong.get(i).getTENNUOC().equalsIgnoreCase(tenNuoc))
+            {
+                return 1;
+            }
+        }
+        return 0;
+    }
+    public int SearchNuoc(String tenNuoc)
+    {
+        int index = 0;
+        for(int i = 0;i < lstAllThucUong.size(); i++)
+        {
+            if(lstAllThucUong.get(i).getTENNUOC().equalsIgnoreCase(tenNuoc))
+            {
+                index = i;
+                return index;
+            }
+        }
+        return index;
+    }
 }

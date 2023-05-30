@@ -36,7 +36,7 @@ public class LOAITHUCUONG_DAL {
     }
     public String getMaLoaiThucUong(String tenThucUong){
         try {
-            String query ="select * from LOAITHUCUONG where  TENLOAI ='"+tenThucUong+"'";
+            String query ="select * from LOAITHUCUONG where TENLOAI ='"+tenThucUong+"'";
             ResultSet rs = con.executeQuery(query);
             while(rs.next()){
                 return rs.getString("MALOAI");
@@ -45,5 +45,131 @@ public class LOAITHUCUONG_DAL {
             Logger.getLogger(LOAITHUCUONG_DAL.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+    public ArrayList<String> getTenLoai()
+    {
+        ArrayList<String> dsTenLoai = new ArrayList<String>();
+        try {
+            String query ="select TENLOAI from LOAITHUCUONG";
+            ResultSet rs = con.executeQuery(query);
+            while(rs.next()){
+                dsTenLoai.add(rs.getString("TENLOAI"));
+            }
+        } catch (SQLException ex) {
+            dsTenLoai.clear();
+            return dsTenLoai;
+        }
+        return dsTenLoai;
+    }
+    public String GetTenLoaiNuoc(String maLoai)
+    {
+        String tenNuoc = "";
+        try {
+            String sql ="Select TENLOAI from LOAITHUCUONG where MALOAI='"+maLoai+"'";
+            Connect_DB cn = new Connect_DB();
+            cn.getCn();
+            ResultSet rs = cn.executeQuery(sql);
+            while(rs.next())
+            {
+                tenNuoc = rs.getString("TENLOAI").trim();
+            }
+            cn.close();
+        } catch (Exception e) 
+        {
+            tenNuoc = "";
+            return tenNuoc;
+        }
+        return tenNuoc;
+    }
+    public String getMaLoai(String tenLoai) 
+    {
+        String maLoai = "";
+        try {
+            String sql ="Select MALOAI from LOAITHUCUONG where TENLOAI=N'"+tenLoai+"'";
+            Connect_DB cn = new Connect_DB();
+            cn.getCn();
+            ResultSet rs = cn.executeQuery(sql);
+            while(rs.next())
+            {
+                maLoai = rs.getString("MALOAI").trim();
+            }
+            cn.close();
+        } catch (Exception e) 
+        {
+            maLoai = "";
+            return maLoai;
+        }
+        return maLoai;
+    }
+    public int getSoLuongLoai()
+    {
+        int sl = 0;
+        try {
+            String sql ="Select COUNT(*) AS SOLUONG from LOAITHUCUONG";
+            Connect_DB cn = new Connect_DB();
+            cn.getCn();
+            ResultSet rs = cn.executeQuery(sql);
+            while(rs.next())
+            {
+                sl = rs.getInt("SOLUONG");
+            }
+            cn.close();
+        } catch (Exception e) 
+        {
+            sl = 0;
+            return sl;
+        }
+        return sl;
+    }
+    public int themLoaiNuoc(LOAITHUCUONG_DTO lnc)
+    {
+        int i = 0;
+        try
+        {
+            String sql = "INSERT INTO LOAITHUCUONG VALUES('"+lnc.getMALOAI()+"', N'"+lnc.getTENLOAI()+"')";
+            Connect_DB cn = new Connect_DB();
+            cn.getCn();
+            i = cn.executeUpdate(sql);
+            lstLoaiThucUong = showList_LOAITHUCUONG();
+            cn.close();
+        } catch(Exception e)
+        {
+            return 0;
+        }   
+        return 1;
+    }
+    public int updateLoaiNuoc(LOAITHUCUONG_DTO lnc)
+    {
+        int i = 0;
+        try
+        {
+            String sql = "Update LOAITHUCUONG set TENLOAI=N'"+lnc.getTENLOAI()+"' Where MALOAI='"+lnc.getMALOAI()+"'";
+            Connect_DB cn = new Connect_DB();
+            cn.getCn();
+            i = cn.executeUpdate(sql);
+            lstLoaiThucUong = showList_LOAITHUCUONG();
+            cn.close();
+        } catch(Exception e)
+        {
+            return 0;
+        }   
+        return 1;
+    }
+    public int deleteLoaiNuoc(String maLoai)
+    {
+        int i = 0;
+        try
+        {
+            String sql = "Delete from LOAITHUCUONG where MALOAI='"+maLoai+"'";
+            Connect_DB cn = new Connect_DB();
+            cn.getCn();
+            i = cn.executeUpdate(sql);
+            lstLoaiThucUong = showList_LOAITHUCUONG();
+            cn.close();
+        } catch(Exception e)
+        {
+            return 0;
+        }   
+        return 1;
     }
 }
