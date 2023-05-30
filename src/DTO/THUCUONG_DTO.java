@@ -22,7 +22,9 @@ public class THUCUONG_DTO {
         this._TRANGTHAI = _TRANGTHAI;
         this._GIA = _GIA;
     }
-
+    public THUCUONG_DTO() {
+    }
+    
     public String getMANUOC() {
         return _MANUOC;
     }

@@ -17,6 +17,9 @@ public class LOAITHUCUONG_DTO {
         this._MALOAI = _MALOAI;
         this._TENLOAI = _TENLOAI;
     }
+    
+    public LOAITHUCUONG_DTO() {
+    }
 
     public String getMALOAI() {
         return _MALOAI;

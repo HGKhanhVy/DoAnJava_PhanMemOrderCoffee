@@ -89,4 +89,13 @@ public class HOADON_DTO {
         this._NGAYXUAT = _NGAYXUAT;
         this._GIOVAO = _GIOVAO;
     }
+    public HOADON_DTO(String _MAHOADON, String _MANHANVIEN, String _NGAYXUAT, String _TRANGTHAI, String _MABAN) {
+        this._MAHOADON = _MAHOADON;
+        this._MANHANVIEN = _MANHANVIEN;
+        this._TRANGTHAI = _TRANGTHAI;
+        this._MABAN = _MABAN;
+        this._NGAYXUAT = _NGAYXUAT;
+    }
+    public HOADON_DTO() {
+    }
 }
